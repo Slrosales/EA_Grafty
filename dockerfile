@@ -4,7 +4,6 @@ FROM node:16
 # Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar 'package.json' y 'package-lock.json' desde la subcarpeta 'app'
 COPY app/package*.json ./
 
 # Instalar todas las dependencias, incluidas las de desarrollo
