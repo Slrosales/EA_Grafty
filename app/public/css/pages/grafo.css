@@ -1,0 +1,235 @@
+/* Styles for subpages/Grafo.html */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f5f7;
+}
+#sec-interactive,
+#sec-interactive * {
+  box-sizing: border-box;
+}
+#sec-interactive {
+  width: min(1400px, 100%);
+  margin: 20px auto;
+  padding: 15px clamp(12px, 2vw, 28px) 32px;
+}
+#sec-interactive .u-sheet {
+  width: 100%;
+}
+#sec-interactive .u-text-1 {
+  text-align: center;
+  margin: 20px 0 24px;
+  font-size: clamp(2rem, 4vw, 3.125rem);
+  color: #333;
+}
+.graph-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.controls-panel {
+  position: sticky;
+  top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: calc(100vh - 32px);
+  padding: 18px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #e2e4ea;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #eceef3;
+}
+.control-group:last-of-type {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.control-group-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+.input-row {
+  display: flex;
+  gap: 8px;
+}
+.input-row input {
+  flex: 1 1 0;
+  min-width: 0;
+}
+#sec-interactive button,
+#sec-interactive input[type="number"] {
+  padding: 8px 10px;
+  font: inherit;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+}
+#sec-interactive button {
+  width: 100%;
+  background-color: #13218d;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#sec-interactive button:hover {
+  background-color: #2196f3;
+}
+#sec-interactive input[type="number"]:focus {
+  border-color: #2196f3;
+}
+#costo-total,
+#grado-grafo {
+  font-size: 0.95rem;
+  color: #333;
+}
+.switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 52px;
+  height: 30px;
+}
+.switch input {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.switch-label {
+  font-size: 0.95rem;
+  color: #333;
+}
+.slider {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  content: "";
+  background-color: #fff;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+.switch input:checked + .slider {
+  background-color: #8d1313;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+.canvas-panel {
+  min-width: 0;
+}
+#sec-interactive canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+.canvas-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #6b7280;
+}
+.results-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
+}
+.matrix-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+.matrix {
+  width: 100%;
+  overflow-x: auto;
+}
+.matrix:empty,
+#dijkstra-steps:empty {
+  display: none;
+}
+.matrix table,
+#dijkstra-steps table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Open Sans", sans-serif;
+}
+.matrix th,
+.matrix td {
+  padding: 8px 15px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+.matrix th,
+#dijkstra-steps th {
+  font-weight: bold;
+  color: #fff;
+  background-color: #8d1313;
+  border: 2px solid #c4c5cc;
+}
+.matrix tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.matrix tr:hover {
+  background-color: #e8e8e8;
+}
+#dijkstra-steps {
+  width: 100%;
+  overflow-x: auto;
+}
+#dijkstra-steps th,
+#dijkstra-steps td {
+  padding: 8px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+}
+#dijkstra-steps tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+#dijkstra-steps tr:nth-child(even) {
+  background-color: #e9ecef;
+}
+@media (max-width: 900px) {
+  .graph-layout {
+    grid-template-columns: 1fr;
+  }
+  .controls-panel {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}
