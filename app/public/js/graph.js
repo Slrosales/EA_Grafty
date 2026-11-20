@@ -4,7 +4,6 @@ export class Nodo {
     this.x = x; // Coordenada x del nodo en el plano
     this.y = y; // Coordenada y del nodo en el plano
     this.vecinos = new Map(); // Mapa para guardar las aristas y sus pesos
-    this.mstAristas = new Set(); // Conjunto para guardar aristas que son parte del Árbol de Expansión Mínima (MST)
   }
 }
 
@@ -43,8 +42,6 @@ export class Grafo {
     if (nodo1 && nodo2) {
       nodo1.vecinos.delete(nodo2);
       nodo2.vecinos.delete(nodo1);
-      nodo1.mstAristas.delete(nodo2);
-      nodo2.mstAristas.delete(nodo1);
     }
   }
 
@@ -55,7 +52,6 @@ export class Grafo {
       const [nodo] = this.nodos.splice(index, 1);
       nodo.vecinos.forEach((_, vecino) => {
         vecino.vecinos.delete(nodo);
-        vecino.mstAristas.delete(nodo);
       });
       this.reasignarIDs();
     }

@@ -1,4 +1,4 @@
-import { Grafo, Nodo } from "./graph.js";
+import { Grafo } from "./graph.js";
 import { pintarNodo, pintarArista, limpiarCanvas } from "./pintar.js";
 import { executePrim, executeDijkstra, floydWarshall } from "./algorithms.js";
 
