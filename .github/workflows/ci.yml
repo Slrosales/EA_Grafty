@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Syntax check
+        run: |
+          node --check server.js
+          for file in public/js/*.js; do
+            node --input-type=module --check < "$file"
+          done
+
+      - name: Smoke test
+        run: |
+          node server.js &
+          SERVER_PID=$!
+          trap "kill $SERVER_PID" EXIT
+          sleep 2
+          for path in \
+            / \
+            /subpages/Concepto.html \
+            /subpages/Dijkstra.html \
+            /subpages/Floyd-Warshall.html \
+            /subpages/MST.html \
+            /subpages/Grafo.html \
+            /css/vendor.css \
+            /css/pages/grafo.css \
+            /js/main.js; do
+            curl -fsS "http://localhost:3000$path" > /dev/null
+          done
