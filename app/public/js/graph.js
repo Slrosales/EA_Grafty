@@ -62,20 +62,13 @@ export class Grafo {
     const nodo = this.nodos.find((n) => n.id === id);
     if (!nodo) return;
 
-    // Eliminar todas las aristas entrantes a este nodo
+    // Eliminar todas las aristas entrantes a este nodo (las claves son objetos Nodo)
     this.nodos.forEach((n) => {
-      if (n.vecinos.has(id)) {
-        n.vecinos.delete(id); // Elimina la arista desde otro nodo hacia el nodo a eliminar
-      }
+      n.vecinos.delete(nodo);
     });
 
-    // Eliminar todas las aristas salientes desde este nodo
-    Array.from(nodo.vecinos.keys()).forEach((vecinoId) => {
-      this.eliminarArista(id, vecinoId); // Uso de eliminarArista para gestionar la eliminación
-    });
-
-    // Eliminar el nodo del array de nodos
-    this.nodos = this.nodos.filter((n) => n.id !== id);
+    // Eliminar el nodo del array de nodos (sus aristas salientes se eliminan con él)
+    this.nodos = this.nodos.filter((n) => n !== nodo);
 
     // Reasignar IDs para todos los nodos
     this.reasignarIDs();

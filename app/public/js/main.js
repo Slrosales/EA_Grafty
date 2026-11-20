@@ -37,9 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // Redibuja todos los elementos del grafo
   function updateCanvas() {
     limpiarCanvas(ctx, canvas.width, canvas.height);
+    const aristasDibujadas = new Set();
     grafo.nodos.forEach((nodo) => {
       pintarNodo(ctx, nodo.x, nodo.y, nodo.id, "blue");
       nodo.vecinos.forEach((peso, vecino) => {
+        if (!grafo.dirigido) {
+          const clave = `${Math.min(nodo.id, vecino.id)}-${Math.max(
+            nodo.id,
+            vecino.id
+          )}`;
+          if (aristasDibujadas.has(clave)) return;
+          aristasDibujadas.add(clave);
+        }
         pintarArista(
           ctx,
           nodo.x,
