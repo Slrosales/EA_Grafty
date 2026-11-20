@@ -82,50 +82,81 @@
         Grafo Interactivo
       </h2>
     </div>
-    <canvas id="canvas" width="800" height="600"></canvas>
-    <div class="switch-container">
-      <label class="switch">
-        <input type="checkbox" id="directed-mode-toggle" />
-        <span class="slider round"></span>
-      </label>
-      <span class="switch-label">Modo Grafo Dirigido</span>
-    </div>
-    <div id="costo-total-container">
-      <span id="costo-total">Costo total del grafo: 0</span>
+    <div class="graph-layout">
+      <aside class="controls-panel">
+        <div class="control-group">
+          <span class="control-group-title">Modo de grafo</span>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="directed-mode-toggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label">Grafo dirigido</span>
+          </div>
+          <div class="switch-container">
+            <label class="switch">
+              <input type="checkbox" id="delete-mode-toggle" />
+              <span class="slider round"></span>
+            </label>
+            <span class="switch-label">Eliminar nodo</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="control-group-title">Estado</span>
+          <span id="costo-total">Costo total del grafo: 0</span>
+          <span id="grado-grafo">Grado del grafo: 0</span>
+        </div>
+
+        <div class="control-group">
+          <span class="control-group-title">Eliminar arista</span>
+          <div class="input-row">
+            <input type="number" id="start-node-delete" placeholder="Nodo inicio" />
+            <input type="number" id="end-node-delete" placeholder="Nodo destino" />
+          </div>
+          <button id="execute-delete">Eliminar arista</button>
+        </div>
+
+        <div class="control-group">
+          <span class="control-group-title">Árbol de expansión mínima</span>
+          <div class="input-row">
+            <input type="number" id="start-node" placeholder="Nodo de inicio" />
+          </div>
+          <button id="calculate-mst">Calcular MST</button>
+        </div>
+
+        <div class="control-group">
+          <span class="control-group-title">Ruta más corta (Dijkstra)</span>
+          <div class="input-row">
+            <input type="number" id="start-node-dijkstra" placeholder="Nodo inicio" />
+            <input type="number" id="end-node-dijkstra" placeholder="Nodo destino" />
+          </div>
+          <button id="execute-dijkstra">Ejecutar Dijkstra</button>
+        </div>
+
+        <div class="control-group">
+          <span class="control-group-title">Todos los pares (Floyd-Warshall)</span>
+          <button id="runFloyd">Ejecutar Floyd-Warshall</button>
+        </div>
+
+        <p class="canvas-hint">
+          Clic en el lienzo para agregar un nodo. Clic derecho en dos nodos para
+          unirlos con una arista.
+        </p>
+      </aside>
+
+      <div class="canvas-panel">
+        <canvas id="canvas" width="800" height="600"></canvas>
+      </div>
     </div>
 
-    <div id="grado-grafo-container">
-      <span id="grado-grafo">Grado del grafo: 0</span>
+    <div class="results-panel">
+      <div id="dijkstra-steps"></div>
+      <div class="matrix-grid">
+        <div id="cost-matrix" class="matrix"></div>
+        <div id="path-matrix" class="matrix"></div>
+      </div>
     </div>
-    <div class="switch-container">
-      <label class="switch">
-        <input type="checkbox" id="delete-mode-toggle" />
-        <span class="slider round"></span>
-      </label>
-      <span class="switch-label">Modo eliminar Nodo</span>
-    </div>
-
-    <div>
-      <input type="number" id="start-node-delete" placeholder="Nodo inicio" />
-      <input type="number" id="end-node-delete" placeholder="Nodo destino" />
-      <button id="execute-delete">Eliminar Arista</button>
-    </div>
-
-    <div id="mst-container">
-      <input type="number" id="start-node" placeholder="Nodo de inicio" />
-      <button id="calculate-mst">Calcular MST</button>
-    </div>
-    <div>
-      <input type="number" id="start-node-dijkstra" placeholder="Nodo inicio" />
-      <input type="number" id="end-node-dijkstra" placeholder="Nodo destino" />
-      <button id="execute-dijkstra">Ejecutar Dijkstra</button>
-    </div>
-    <div id="dijkstra-steps"></div>
-    <div>
-      <button id="runFloyd">Ejecutar Floyd-Warshall</button>
-    </div>
-    <div id="cost-matrix" class="matrix"></div>
-    <div id="path-matrix" class="matrix"></div>
     <script type="module" src="../js/main.js"></script>
   </section>
 
